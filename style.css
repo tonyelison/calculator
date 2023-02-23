@@ -1,0 +1,32 @@
+body {
+  box-sizing: border-box;
+  max-width: 500px;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.buttons {
+  --button-gap: 5px;
+  
+  display: flex;
+  gap: var(--button-gap);
+}
+
+.digits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--button-gap);
+}
+
+#zero {
+  grid-column: span 2;
+}
+
+.operators {
+  display: flex;
+  flex-direction: column;
+  gap: var(--button-gap);
+}
