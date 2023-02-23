@@ -1,21 +1,36 @@
 body {
+  font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
-  max-width: 500px;
 }
 
-button {
-  padding: 5px 10px;
-  cursor: pointer;
+.calculator {
+  --button-gap: 8px;
+  --form-control-padding: 10px 15px;
+
+  max-width: 400px;
+  margin: 100px auto;
+}
+
+.display {
+  text-align: right;
+  padding: var(--form-control-padding);
+  margin-bottom: var(--button-gap);
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .buttons {
-  --button-gap: 5px;
-  
   display: flex;
   gap: var(--button-gap);
 }
 
+button {
+  padding: var(--form-control-padding);
+  cursor: pointer;
+}
+
 .digits {
+  flex: 1 1 60%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--button-gap);
@@ -26,6 +41,7 @@ button {
 }
 
 .operators {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: var(--button-gap);
