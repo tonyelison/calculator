@@ -18,6 +18,7 @@ Initialize Display Value
 
 let currentValues = [0, 0];
 let selectedOperator;
+let decimalSelected;
 const getValueIndex = () => selectedOperator ? 1 : 0;
 
 const display = document.querySelector(".display");
@@ -40,7 +41,23 @@ for (let i = 0; i <= 9; i++) {
 
 function appendDigit(value) {
   const valueIndex = getValueIndex();
-  currentValues[valueIndex] = currentValues[valueIndex] * 10 + value;
+  if (decimalSelected) {
+    currentValues[valueIndex] = currentValues[valueIndex].toString() + value.toString();
+  } else {
+    currentValues[valueIndex] = currentValues[valueIndex] * 10 + value;
+  }
+  updateDisplay(currentValues[valueIndex]);
+}
+
+// decimal
+
+const decimalBtn = digitsContainer.querySelector("#decimal");
+decimalBtn.addEventListener(CLICK_EVENT, setDecimal);
+
+function setDecimal() {
+  decimalSelected = true;
+  const valueIndex = getValueIndex();
+  currentValues[valueIndex] = currentValues[valueIndex].toString() + ".";
   updateDisplay(currentValues[valueIndex]);
 }
 
@@ -57,6 +74,7 @@ const clearSelectedOperator = () => {
 function clearAll(updateDisplay = true) {
   currentValues = [0, 0];
   selectedOperator = null;  
+  decimalSelected = false;
 
   clearSelectedOperator();
   
