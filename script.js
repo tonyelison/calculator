@@ -66,7 +66,13 @@ function clearAll(updateDisplay = true) {
 // sign
 
 const signBtn = document.getElementById("sign");
-// signBtn.addEventListener(CLICK_EVENT, )
+signBtn.addEventListener(CLICK_EVENT, updateSign);
+
+function updateSign() {
+  const valueIndex = getValueIndex();
+  currentValues[valueIndex] *= -1;
+  updateDisplay(currentValues[valueIndex]);
+}
 
 // percent
 
