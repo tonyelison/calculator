@@ -2,18 +2,12 @@
 Define Operations
 */
 
-const add = (a, b) => a + b;
-const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
-const equals = (a) => a;
-
 const OPERATIONS = {
-  "+": add,
-  "-": subtract,
-  "*": multiply,
-  "/": divide,
-  "=": equals,
+  "+": (a, b) => a + b,
+  "-": (a, b) => a - b,
+  "*": (a, b) => a * b,
+  "/": (a, b) => a / b,
+  "=": (a) => a,
 };
 
 const operate = (operator, values) => OPERATIONS[operator](values[0], values[1]);
@@ -55,9 +49,16 @@ function appendDigit(value) {
 const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener(CLICK_EVENT, clearAll);
 
+const clearSelectedOperator = () => {
+  const selectedButton = document.querySelector(".operators button.selected");
+  selectedButton?.classList.remove("selected");
+};
+
 function clearAll(updateDisplay = true) {
   currentValues = [0, 0];
   selectedOperator = null;  
+
+  clearSelectedOperator();
   
   if (updateDisplay) display.textContent = currentValues[0];
 }
@@ -65,7 +66,7 @@ function clearAll(updateDisplay = true) {
 // sign
 
 const signBtn = document.getElementById("sign");
-signBtn.addEventListener(CLICK_EVENT, )
+// signBtn.addEventListener(CLICK_EVENT, )
 
 // percent
 
@@ -89,8 +90,7 @@ function operatorButtonHandler() {
     display.textContent = currentValues[0];
   }
  
-  const selectedButton = document.querySelector(".operators button.selected");
-  selectedButton?.classList.remove("selected");
+  clearSelectedOperator();
 
   if (this.id === "=") {
     clearAll(false);
