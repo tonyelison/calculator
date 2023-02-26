@@ -29,15 +29,15 @@ button {
   cursor: pointer;
 }
 
+button[data-val="0"] {
+  grid-column: span 2;
+}
+
 .digits {
   flex: 1 1 60%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--button-gap);
-}
-
-#zero {
-  grid-column: span 2;
 }
 
 .operators {

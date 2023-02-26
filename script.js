@@ -1,3 +1,7 @@
+/*
+Define Operations
+*/
+
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
@@ -11,3 +15,15 @@ const OPERATIONS = {
 };
 
 const operate = (operator, num1, num2) => OPERATIONS[operator](num1, num2);
+
+/*
+Initialize Button Event Handlers
+*/
+
+const digitsContainer = document.querySelector(".digits");
+
+for (let i = 0; i <= 9; i++) {
+  const button = digitsContainer.querySelector(`button[data-val="${i}"]`);
+  button.textContent = i;
+  button.addEventListener("click", () => console.log(i));
+}
