@@ -6,15 +6,17 @@ const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
+const equals = (a) => a;
 
 const OPERATIONS = {
   "+": add,
   "-": subtract,
   "*": multiply,
   "/": divide,
+  "=": equals,
 };
 
-const operate = (operator, num1, num2) => OPERATIONS[operator](num1, num2);
+const operate = (operator, values) => OPERATIONS[operator](values[0], values[1]);
 
 /*
 Initialize Display Value
@@ -29,14 +31,8 @@ const setDisplayValue = (newVal) => {
   display.textContent = newVal;
 };
 
-const clearAll = () => {
-  currentValues = [0, 0];
-  selectedOperator = null;  
-  display.textContent = currentValues[0];
-}
-
 /*
-Initialize Button Event Handlers
+Set Button Event Handlers
 */
 
 const digitsContainer = document.querySelector(".digits");
@@ -54,6 +50,33 @@ for (let i = 0; i <= 9; i++) {
 const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener("click", clearAll);
 
+function clearAll(updateDisplay = true) {
+  currentValues = [0, 0];
+  selectedOperator = null;  
+  
+  if (updateDisplay) display.textContent = currentValues[0];
+}
+
 const signBtn = document.getElementById("sign");
 const percentBtn = document.getElementById("percent");
 percentBtn.addEventListener("click", () => setDisplayValue(currentValues[0] /= 100));
+
+const operatorButtons = document.querySelectorAll(".operators button");
+operatorButtons.forEach((button) => button.addEventListener("click", operatorButtonHandler));
+
+function operatorButtonHandler() {
+  if (selectedOperator) {
+    currentValues = [operate(selectedOperator, currentValues), 0];
+    display.textContent = currentValues[0];
+  }
+ 
+  const selectedButton = document.querySelector(".operators button.selected");
+  selectedButton?.classList.remove("selected");
+
+  if (this.id === "=") {
+    clearAll(false);
+  } else {
+    selectedOperator = this.id;
+    this.classList.add('selected');
+  }
+}

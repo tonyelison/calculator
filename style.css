@@ -46,3 +46,7 @@ button[data-val="0"] {
   flex-direction: column;
   gap: var(--button-gap);
 }
+
+.operators button.selected {
+  border: 2px solid blue;
+}
