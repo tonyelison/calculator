@@ -20,8 +20,20 @@ const operate = (operator, num1, num2) => OPERATIONS[operator](num1, num2);
 Initialize Display Value
 */
 
-let currentValue = 0;
+let currentValues = [0, 0];
+let selectedOperator;
+
 const display = document.querySelector(".display");
+const setDisplayValue = (newVal) => {
+  currentValues[0] = newVal;
+  display.textContent = newVal;
+};
+
+const clearAll = () => {
+  currentValues = [0, 0];
+  selectedOperator = null;  
+  display.textContent = currentValues[0];
+}
 
 /*
 Initialize Button Event Handlers
@@ -33,16 +45,15 @@ for (let i = 0; i <= 9; i++) {
   const button = digitsContainer.querySelector(`button[data-val="${i}"]`);
   button.textContent = i;
   button.addEventListener("click", () => {
-    currentValue = currentValue * 10 + i;
-    display.textContent = currentValue;
+    const valueIndex = selectedOperator ? 1 : 0;
+    currentValues[valueIndex] = currentValues[valueIndex] * 10 + i;
+    display.textContent = currentValues[valueIndex];
   });
 }
 
 const clearBtn = document.getElementById("clear");
-clearBtn.addEventListener("click", () => {
-  currentValue = 0;
-  display.textContent = currentValue;
-});
+clearBtn.addEventListener("click", clearAll);
 
 const signBtn = document.getElementById("sign");
 const percentBtn = document.getElementById("percent");
+percentBtn.addEventListener("click", () => setDisplayValue(currentValues[0] /= 100));
