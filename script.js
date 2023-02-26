@@ -24,31 +24,36 @@ Initialize Display Value
 
 let currentValues = [0, 0];
 let selectedOperator;
+const getValueIndex = () => selectedOperator ? 1 : 0;
 
 const display = document.querySelector(".display");
-const setDisplayValue = (newVal) => {
-  currentValues[0] = newVal;
-  display.textContent = newVal;
-};
+const updateDisplay = (newVal) => display.textContent = newVal;
 
 /*
 Set Button Event Handlers
 */
 
+const CLICK_EVENT = "click";
 const digitsContainer = document.querySelector(".digits");
+
+// digits
 
 for (let i = 0; i <= 9; i++) {
   const button = digitsContainer.querySelector(`button[data-val="${i}"]`);
   button.textContent = i;
-  button.addEventListener("click", () => {
-    const valueIndex = selectedOperator ? 1 : 0;
-    currentValues[valueIndex] = currentValues[valueIndex] * 10 + i;
-    display.textContent = currentValues[valueIndex];
-  });
+  button.addEventListener(CLICK_EVENT, () => appendDigit(i));
 }
 
+function appendDigit(value) {
+  const valueIndex = getValueIndex();
+  currentValues[valueIndex] = currentValues[valueIndex] * 10 + value;
+  updateDisplay(currentValues[valueIndex]);
+}
+
+// clear
+
 const clearBtn = document.getElementById("clear");
-clearBtn.addEventListener("click", clearAll);
+clearBtn.addEventListener(CLICK_EVENT, clearAll);
 
 function clearAll(updateDisplay = true) {
   currentValues = [0, 0];
@@ -57,12 +62,26 @@ function clearAll(updateDisplay = true) {
   if (updateDisplay) display.textContent = currentValues[0];
 }
 
+// sign
+
 const signBtn = document.getElementById("sign");
+signBtn.addEventListener(CLICK_EVENT, )
+
+// percent
+
 const percentBtn = document.getElementById("percent");
-percentBtn.addEventListener("click", () => setDisplayValue(currentValues[0] /= 100));
+percentBtn.addEventListener(CLICK_EVENT, setPercent);
+
+function setPercent() {
+  const valueIndex = getValueIndex();
+  currentValues[valueIndex] /= 100;
+  updateDisplay(currentValues[valueIndex]);
+};
+
+// operators
 
 const operatorButtons = document.querySelectorAll(".operators button");
-operatorButtons.forEach((button) => button.addEventListener("click", operatorButtonHandler));
+operatorButtons.forEach((button) => button.addEventListener(CLICK_EVENT, operatorButtonHandler));
 
 function operatorButtonHandler() {
   if (selectedOperator) {
