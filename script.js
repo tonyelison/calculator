@@ -33,7 +33,7 @@ for (let i = 0; i <= 9; i++) {
   const button = digitsContainer.querySelector(`button[data-val="${i}"]`);
   button.textContent = i;
   button.addEventListener("click", () => {
-    currentValue = i;
+    currentValue = currentValue * 10 + i;
     display.textContent = currentValue;
   });
 }
