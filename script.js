@@ -17,6 +17,13 @@ const OPERATIONS = {
 const operate = (operator, num1, num2) => OPERATIONS[operator](num1, num2);
 
 /*
+Initialize Display Value
+*/
+
+let currentValue = 0;
+const display = document.querySelector(".display");
+
+/*
 Initialize Button Event Handlers
 */
 
@@ -25,5 +32,17 @@ const digitsContainer = document.querySelector(".digits");
 for (let i = 0; i <= 9; i++) {
   const button = digitsContainer.querySelector(`button[data-val="${i}"]`);
   button.textContent = i;
-  button.addEventListener("click", () => console.log(i));
+  button.addEventListener("click", () => {
+    currentValue = i;
+    display.textContent = currentValue;
+  });
 }
+
+const clearBtn = document.getElementById("clear");
+clearBtn.addEventListener("click", () => {
+  currentValue = 0;
+  display.textContent = currentValue;
+});
+
+const signBtn = document.getElementById("sign");
+const percentBtn = document.getElementById("percent");
