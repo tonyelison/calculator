@@ -115,6 +115,8 @@ function operatorButtonHandler() {
     clearSelectedButton(true);
   }
 
+  decimalSelected = false;
+
   if (this.id !== "=") {
     selectedOperator = this.id;
     this.classList.add('selected');
