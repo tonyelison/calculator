@@ -24,7 +24,7 @@ const getValueIndex = () => selectedOperator ? 1 : 0;
 const display = document.querySelector(".display");
 const updateDisplay = (newVal) => {
   display.textContent = newVal;
-  clearSelectedOperator();
+  clearSelectedButton();
 }
 
 /*
@@ -69,17 +69,17 @@ function setDecimal() {
 const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener(CLICK_EVENT, clearAll);
 
-const clearSelectedOperator = () => {
+const clearSelectedButton = (clearSelectedOperator = false) => {
   const selected = document.getElementById(selectedOperator);
   selected?.classList.remove("selected");
+
+  if (clearSelectedOperator) selectedOperator = null;
 };
 
-function clearAll(updateDisplay = true) {
-  clearSelectedOperator();
-  
+function clearAll(updateDisplay = true) {  
   currentValues = [0, 0];
-  selectedOperator = null;  
   decimalSelected = false;
+  clearSelectedButton(true);
   
   if (updateDisplay) display.textContent = currentValues[0];
 }
@@ -115,8 +115,7 @@ function operatorButtonHandler() {
   if (selectedOperator) {
     currentValues = [operate(selectedOperator, currentValues), 0];
     display.textContent = currentValues[0];
-    clearSelectedOperator();
-    selectedOperator = null;
+    clearSelectedButton(true);
   }
 
   if (this.id !== "=") {
