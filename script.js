@@ -115,12 +115,11 @@ function operatorButtonHandler() {
   if (selectedOperator) {
     currentValues = [operate(selectedOperator, currentValues), 0];
     display.textContent = currentValues[0];
+    clearSelectedOperator();
+    selectedOperator = null;
   }
 
-  if (this.id === "=") {
-    clearAll(false);
-  } else {
-    clearSelectedOperator();
+  if (this.id !== "=") {
     selectedOperator = this.id;
     this.classList.add('selected');
   }
