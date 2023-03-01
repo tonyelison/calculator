@@ -75,11 +75,11 @@ const clearSelectedOperator = () => {
 };
 
 function clearAll(updateDisplay = true) {
+  clearSelectedOperator();
+  
   currentValues = [0, 0];
   selectedOperator = null;  
   decimalSelected = false;
-
-  clearSelectedOperator();
   
   if (updateDisplay) display.textContent = currentValues[0];
 }
@@ -116,12 +116,11 @@ function operatorButtonHandler() {
     currentValues = [operate(selectedOperator, currentValues), 0];
     display.textContent = currentValues[0];
   }
- 
-  clearSelectedOperator();
 
   if (this.id === "=") {
     clearAll(false);
   } else {
+    clearSelectedOperator();
     selectedOperator = this.id;
     this.classList.add('selected');
   }
