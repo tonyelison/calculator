@@ -10,7 +10,7 @@ const OPERATIONS = {
   "=": (a) => a,
 };
 
-const operate = (operator, values) => OPERATIONS[operator](values[0], values[1]);
+const operate = (operator, values) => OPERATIONS[operator](parseFloat(values[0]), parseFloat(values[1]));
 
 /*
 Initialize Display Value
