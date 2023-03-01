@@ -34,6 +34,12 @@ Set Button Event Handlers
 const CLICK_EVENT = "click";
 const digitsContainer = document.querySelector(".digits");
 
+function updateValue(update, willUpdateDisplay = true) {
+  const valueIndex = getValueIndex();
+  currentValues[valueIndex] = update(currentValues[valueIndex]);
+  if (willUpdateDisplay) updateDisplay(currentValues[valueIndex]);
+}
+
 // digits
 
 for (let i = 0; i <= 9; i++) {
@@ -42,14 +48,11 @@ for (let i = 0; i <= 9; i++) {
   button.addEventListener(CLICK_EVENT, () => appendDigit(i));
 }
 
-function appendDigit(value) {
-  const valueIndex = getValueIndex();
-  if (decimalSelected) {
-    currentValues[valueIndex] = currentValues[valueIndex].toString() + value.toString();
-  } else {
-    currentValues[valueIndex] = currentValues[valueIndex] * 10 + value;
-  }
-  updateDisplay(currentValues[valueIndex]);
+function appendDigit(newVal) {
+    updateValue((currentVal) => decimalSelected ?
+      currentVal.toString() + newVal.toString() :
+      currentVal * 10 + newVal
+    );
 }
 
 // decimal
@@ -59,9 +62,7 @@ decimalBtn.addEventListener(CLICK_EVENT, setDecimal);
 
 function setDecimal() {
   decimalSelected = true;
-  const valueIndex = getValueIndex();
-  currentValues[valueIndex] = currentValues[valueIndex].toString() + ".";
-  updateDisplay(currentValues[valueIndex]);
+  updateValue((currentVal) => currentVal.toString() + ".");
 }
 
 // clear
@@ -90,9 +91,7 @@ const signBtn = document.getElementById("sign");
 signBtn.addEventListener(CLICK_EVENT, updateSign);
 
 function updateSign() {
-  const valueIndex = getValueIndex();
-  currentValues[valueIndex] *= -1;
-  updateDisplay(currentValues[valueIndex]);
+  updateValue((currentVal) => currentVal *= -1);
 }
 
 // percent
@@ -101,9 +100,7 @@ const percentBtn = document.getElementById("percent");
 percentBtn.addEventListener(CLICK_EVENT, setPercent);
 
 function setPercent() {
-  const valueIndex = getValueIndex();
-  currentValues[valueIndex] /= 100;
-  updateDisplay(currentValues[valueIndex]);
+  updateValue((currentVal) => currentVal /= 100);
 };
 
 // operators
