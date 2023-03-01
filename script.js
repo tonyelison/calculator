@@ -34,9 +34,9 @@ Set Button Event Handlers
 const CLICK_EVENT = "click";
 const digitsContainer = document.querySelector(".digits");
 
-function updateValue(update, willUpdateDisplay = true) {
+function updateValue(updateCallback, willUpdateDisplay = true) {
   const valueIndex = getValueIndex();
-  currentValues[valueIndex] = update(currentValues[valueIndex]);
+  currentValues[valueIndex] = updateCallback(currentValues[valueIndex]);
   if (willUpdateDisplay) updateDisplay(currentValues[valueIndex]);
 }
 
