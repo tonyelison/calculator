@@ -22,7 +22,10 @@ let decimalSelected;
 const getValueIndex = () => selectedOperator ? 1 : 0;
 
 const display = document.querySelector(".display");
-const updateDisplay = (newVal) => display.textContent = newVal;
+const updateDisplay = (newVal) => {
+  display.textContent = newVal;
+  clearSelectedOperator();
+}
 
 /*
 Set Button Event Handlers
@@ -67,8 +70,8 @@ const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener(CLICK_EVENT, clearAll);
 
 const clearSelectedOperator = () => {
-  const selectedButton = document.querySelector(".operators button.selected");
-  selectedButton?.classList.remove("selected");
+  const selected = document.getElementById(selectedOperator);
+  selected?.classList.remove("selected");
 };
 
 function clearAll(updateDisplay = true) {
