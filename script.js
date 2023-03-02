@@ -91,7 +91,7 @@ const signBtn = document.getElementById("sign");
 signBtn.addEventListener(CLICK_EVENT, updateSign);
 
 function updateSign() {
-  updateValue((currentVal) => currentVal *= -1);
+  updateValue((currentVal) => (selectedOperator ? currentValues[0] : currentVal) * -1);
 }
 
 // percent
@@ -100,7 +100,7 @@ const percentBtn = document.getElementById("percent");
 percentBtn.addEventListener(CLICK_EVENT, setPercent);
 
 function setPercent() {
-  updateValue((currentVal) => currentVal /= 100);
+  updateValue((currentVal) => (selectedOperator ? currentValues[0] : currentVal) / 100);
 };
 
 // operators
