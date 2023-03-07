@@ -5,6 +5,8 @@ body {
 }
 
 .calculator {
+  --border-radius: 25px;
+
   width: 420px;
   margin: 100px auto;
 }
@@ -12,7 +14,7 @@ body {
 .display {
   text-align: right;
   padding: 50px 30px 0 30px;
-  border-radius: 8px 8px 0 0;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
   background-color: #212b41;
   color: #11b387;
   font-size: 96px;
@@ -20,7 +22,7 @@ body {
 
 .buttons {
   padding: 30px;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
   background-color: #2e3951;
 
   display: grid;
