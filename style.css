@@ -14,13 +14,23 @@ body {
   margin: 100px auto;
 }
 
-.display {
+.display-container {
+  min-height: 140px;
   text-align: right;
-  padding: 50px 30px 0 30px;
+  padding: 50px 0 20px 0;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   background-color: var(--color-slate);
   color: #11b387;
   font-size: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.display {
+  margin-inline: 30px;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .buttons {

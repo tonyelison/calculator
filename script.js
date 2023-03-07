@@ -10,7 +10,10 @@ const OPERATIONS = {
   "=": (a) => a,
 };
 
-const operate = (operator, values) => OPERATIONS[operator](parseFloat(values[0]), parseFloat(values[1]));
+const operate = (operator, values) => {
+  const result = OPERATIONS[operator](parseFloat(values[0]), parseFloat(values[1]));
+  return [Infinity, -Infinity, NaN].includes(result) ? "Not a number!" : result;
+};
 
 /*
 Initialize Display Value
@@ -22,9 +25,19 @@ let decimalSelected;
 const getValueIndex = () => selectedOperator ? 1 : 0;
 
 const display = document.querySelector(".display");
+
+const adjustDisplayFontSize = () => {
+  let fontSize = 96;
+  display.style.fontSize = fontSize + 'px';
+  while (display.scrollWidth > display.clientWidth) {
+    display.style.fontSize = fontSize-- + 'px';
+  }
+}
+
 const updateDisplay = (newVal) => {
   display.textContent = newVal;
   clearSelectedButton();
+  adjustDisplayFontSize();
 }
 
 /*
@@ -82,7 +95,10 @@ function clearAll(updateDisplay = true) {
   decimalSelected = false;
   clearSelectedButton(true);
   
-  if (updateDisplay) display.textContent = currentValues[0];
+  if (updateDisplay) {
+    display.textContent = currentValues[0];
+    adjustDisplayFontSize();
+  };
 }
 
 // sign
@@ -121,4 +137,6 @@ function operatorButtonHandler() {
     selectedOperator = this.id;
     this.classList.add('selected');
   }
+
+  adjustDisplayFontSize();
 }
