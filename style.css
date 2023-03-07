@@ -6,6 +6,9 @@ body {
 
 .calculator {
   --border-radius: 25px;
+  --color-green: #18d4a3;
+  --color-slate: #212b41;
+  --color-slate-light: #2e3951;
 
   width: 420px;
   margin: 100px auto;
@@ -15,7 +18,7 @@ body {
   text-align: right;
   padding: 50px 30px 0 30px;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
-  background-color: #212b41;
+  background-color: var(--color-slate);
   color: #11b387;
   font-size: 96px;
 }
@@ -23,7 +26,7 @@ body {
 .buttons {
   padding: 30px;
   border-radius: 0 0 var(--border-radius) var(--border-radius);
-  background-color: #2e3951;
+  background-color: var(--color-slate-light);
 
   display: grid;
   grid-template-columns: repeat(4, 64px);
@@ -36,7 +39,7 @@ button {
   font-family: 'Jost', Arial, Helvetica, sans-serif;
   cursor: pointer;
   color: #95a79f;
-  background-color: #2e3951;
+  background-color: var(--color-slate-light);
   padding: 2px 2px 4px 2px;
   border: none;
   border-radius: 50px;
@@ -49,8 +52,8 @@ button:not(.operator, .cta):hover {
 }
 
 button.operator {
-  background-color: #212b41;
-  color: #18d4a3;
+  background-color: var(--color-slate);
+  color: var(--color-green);
 }
 
 button.operator:hover {
@@ -58,12 +61,12 @@ button.operator:hover {
 }
 
 button.operator.selected {
-  outline: 1px solid #18d4a3;
+  outline: 1px solid var(--color-green);
 }
 
 button.cta {
-  background-color: #18d4a3;
-  color: #212b41;
+  background-color: var(--color-green);
+  color: var(--color-slate);
 }
 
 button.cta:hover {
