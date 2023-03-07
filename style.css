@@ -12,6 +12,8 @@ body {
 
   width: 420px;
   margin: 100px auto;
+  box-shadow: 2px 2px 6px var(--color-slate-light);
+  border-radius: 25px;
 }
 
 .display-container {
@@ -66,12 +68,8 @@ button.operator {
   color: var(--color-green);
 }
 
-button.operator:hover {
+button.operator:hover, button.operator.selected {
   background-color: #192131;
-}
-
-button.operator.selected {
-  outline: 1px solid var(--color-green);
 }
 
 button.cta {
