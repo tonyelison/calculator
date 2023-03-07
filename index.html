@@ -6,37 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator</title>
   <script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="calculator">
     <div class="display">0</div>
     <div class="buttons">
-      <div class="digits">
-        <button id="clear">AC</button>
-        <button id="sign">+/-</button>
-        <button id="percent">%</button>
+      <button id="clear" class="operator fn">C</button>
+      <button id="sign" class="operator fn">±</button>
+      <button id="percent" class="operator fn">%</button>
+      <button id="/" class="operator">÷</button>
 
-        <button data-val="7"></button>
-        <button data-val="8"></button>
-        <button data-val="9"></button>
-        <button data-val="4"></button>
-        <button data-val="5"></button>
-        <button data-val="6"></button>
-        <button data-val="1"></button>
-        <button data-val="2"></button>
-        <button data-val="3"></button>
-        <button data-val="0"></button>
-        
-        <button id="decimal">.</button>
-      </div>
-      <div class="operators">
-        <button id="/">÷</button>
-        <button id="*">×</button>
-        <button id="-">-</button>
-        <button id="+">+</button>
-        <button id="=">=</button>
-      </div>
+      <button data-val="7"></button>
+      <button data-val="8"></button>
+      <button data-val="9"></button>
+      <button id="*" class="operator">×</button>
+
+
+      <button data-val="4"></button>
+      <button data-val="5"></button>
+      <button data-val="6"></button>
+      <button id="-" class="operator">–</button>
+
+
+      <button data-val="1"></button>
+      <button data-val="2"></button>
+      <button data-val="3"></button>
+      <button id="+" class="operator">+</button>
+
+
+      <button data-val="0"></button>
+      <button id="decimal">.</button>
+      <span></span>
+      <button id="=" class="operator cta">=</button>
+
     </div>
   </div>
 </body>

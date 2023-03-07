@@ -32,7 +32,7 @@ Set Button Event Handlers
 */
 
 const CLICK_EVENT = "click";
-const digitsContainer = document.querySelector(".digits");
+const buttonsContainer = document.querySelector(".buttons");
 
 function updateValue(updateCallback, willUpdateDisplay = true) {
   const valueIndex = getValueIndex();
@@ -43,7 +43,7 @@ function updateValue(updateCallback, willUpdateDisplay = true) {
 // digits
 
 for (let i = 0; i <= 9; i++) {
-  const button = digitsContainer.querySelector(`button[data-val="${i}"]`);
+  const button = buttonsContainer.querySelector(`button[data-val="${i}"]`);
   button.textContent = i;
   button.addEventListener(CLICK_EVENT, () => appendDigit(i));
 }
@@ -57,7 +57,7 @@ function appendDigit(newVal) {
 
 // decimal
 
-const decimalBtn = digitsContainer.querySelector("#decimal");
+const decimalBtn = buttonsContainer.querySelector("#decimal");
 decimalBtn.addEventListener(CLICK_EVENT, setDecimal);
 
 function setDecimal() {
@@ -105,7 +105,7 @@ function setPercent() {
 
 // operators
 
-const operatorButtons = document.querySelectorAll(".operators button");
+const operatorButtons = buttonsContainer.querySelectorAll("button.operator:not(.fn)");
 operatorButtons.forEach((button) => button.addEventListener(CLICK_EVENT, operatorButtonHandler));
 
 function operatorButtonHandler() {
